@@ -14,11 +14,18 @@ module.exports = (() => {
 
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 
+	},
+
+	hsl = (data, type = 'background') => {
+
+		return `hsl(${data.hue}, ${data.saturation[type]}%, ${data.luminosity[type]}%)`;
+
 	};
 
 	return {
 		boolean,
-		randomise
+		randomise,
+		hsl
 	};
 
 })();

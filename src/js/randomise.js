@@ -12,13 +12,13 @@ module.exports = (() => {
 
 	init = () => {
 
-		console.log('Init...');
-
 		const path = buildPath();
 		const hue = calcHue();
+		const saturation = calcPercentage({min: 60, max: 100, seperate: 40});
+		const luminosity = calcPercentage({min: 40, max: 60, seperate: 40});
 		const rotation = calcRotation();
 
-		return {path, hue, rotation};
+		return {path, hue, saturation, luminosity, rotation};
 
 	},
 
@@ -59,6 +59,19 @@ module.exports = (() => {
 	calcHue = () => {
 
 		return helpers.randomise({max: 360});
+
+	},
+
+	calcPercentage = ({min, max, seperate}) => {
+
+		const one = helpers.randomise({min: min, max: max - seperate});
+		const two = helpers.randomise({min: one + seperate, max: max});
+		const swap = helpers.boolean();
+
+		return {
+			background: swap ? two : one,
+			path: swap ? one : two
+		};
 
 	},
 

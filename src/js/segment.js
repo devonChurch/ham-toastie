@@ -1,5 +1,7 @@
 'use strict';
 
+const helpers = require('./helpers');
+
 module.exports = (() => {
 
 	const
@@ -8,13 +10,16 @@ module.exports = (() => {
 
         return (
 			`<div class="pattern__segment"
-				  style="background: hsl(${data.hue}, 50%, 50%)">
+				  style="background: ${helpers.hsl(data)}">
 				<div class="pattern__flip">
 					<div class="pattern__rotate pattern__rotate--${data.rotation}">
-						${compiledSvgs(data.path)}
+						${compiledSvgs(data)}
 					</div>
 				</div>
 			</div>`
+
+			// <script></script>
+			// data-json="serialiseJson"
 		);
 
     },
@@ -30,18 +35,18 @@ module.exports = (() => {
 
 	},
 
-	generateSvg = (path) => {
+	generateSvg = (data) => {
 
 		return (
 			`<svg class="pattern__svg"
-				  style="stroke-width:2px;stroke:red;fill:transparent;"
+				  style="stroke-width:2px;stroke:${helpers.hsl(data, 'path')};fill:transparent;"
 				  version="1.0"
 				  xmlns="http://www.w3.org/2000/svg"
 				  xmlns:xlink="http://www.w3.org/1999/xlink"
 				  viewBox="0 0 100 100"
 				  x="0px"
 				  y="0px">
-				  <polyline stroke-miterlimit="10" points="${calcPoints(path)}"/>
+				  <polyline stroke-miterlimit="10" points="${calcPoints(data.path)}"/>
 
 			</svg>`
 		);
