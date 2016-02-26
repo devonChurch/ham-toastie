@@ -4,23 +4,48 @@ module.exports = (() => {
 
 	const
 
-	boolean = () => {
+	size = 2,
 
-        return randomise({max: 1}) % 2 === 0 ? false : true;
+	init = (segment) => {
+
+        return (
+			`<div class="pattern pattern--thumbnail">
+				${generateRows(segment)}
+			</div>`
+		);
 
     },
 
-	randomise = ({min = 0, max}) => {
+	generateRows = (segment) => {
 
-		console.log('__randomising__');
+		let html = '';
 
-		return Math.floor(Math.random() * (max - min + 1)) + min;
+		for (let i = 0; i < size; i += 1) {
+
+			html += (
+				`<div class="pattern__row">
+					${generateSegments(segment)}
+				</div>`
+			);
+
+		}
+
+		return html;
+
+	},
+
+	generateSegments = (segment) => {
+
+		let html = '';
+
+		for (let i = 0; i < size; i += 1) html += segment;
+
+		return html;
 
 	};
 
 	return {
-		boolean,
-		randomise
+		init
 	};
 
 })();

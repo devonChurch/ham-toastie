@@ -15,15 +15,14 @@ module.exports = (() => {
 		console.log('Init...');
 
 		const path = buildPath();
+		const hue = calcHue();
 		const rotation = calcRotation();
 
-		return {path, rotation};
+		return {path, hue, rotation};
 
 	},
 
 	buildPath = () => {
-
-		// const start = calcStart();
 
 		const data = [calcStart()];
 		let x = data[0].x;
@@ -31,19 +30,12 @@ module.exports = (() => {
 
 		while(y < size && x > 0 && x < size) {
 
-			// console.log(x, y);
-
-			// const offsetX = offsetPath();
-			// const offsetY = offsetPath();
-
 			x = helpers.boolean() ? x - offsetPath() : x + offsetPath();
 			y += offsetPath();
 
 			data.push({x, y});
 
 		}
-
-		console.log(data);
 
 		return data;
 
@@ -57,33 +49,16 @@ module.exports = (() => {
 
 	calcStart = () => {
 
-		// const plane = helpers.randomise(4);
-		// const variableAxis = helpers.randomise(100);
-		// const coordinates = [
-		// 	{ // Top.
-		// 		x: variableAxis,
-		// 		y: 0
-		// 	},
-		// 	{ // Right.
-		// 		x: 100,
-		// 		y: variableAxis
-		// 	},
-		// 	{ // Bottom.
-		// 		x: variableAxis,
-		// 		y: 100
-		// 	},
-		// 	{ // Left.
-		// 		x: 0,
-		// 		y: variableAxis
-		// 	}
-		// ];
-		//
-		// return coordinates[plane];
-
 		const x = helpers.randomise({max: 100});
 		const y = 0;
 
 		return {x, y};
+
+	},
+
+	calcHue = () => {
+
+		return helpers.randomise({max: 360});
 
 	},
 

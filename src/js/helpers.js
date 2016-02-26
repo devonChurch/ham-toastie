@@ -12,8 +12,6 @@ module.exports = (() => {
 
 	randomise = ({min = 0, max}) => {
 
-		console.log('__randomising__');
-
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 
 	};
