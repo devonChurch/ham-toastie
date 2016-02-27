@@ -18,9 +18,6 @@ module.exports = (() => {
 					</div>
 				</div>
 			</div>`
-
-			// <script></script>
-			// data-json="serialiseJson"
 		);
 
     },

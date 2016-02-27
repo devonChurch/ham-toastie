@@ -4,13 +4,17 @@ module.exports = (() => {
 
 	const
 
-	init = ({segment, modifier = 'thumbnail', x = 6, y = 6, transition = false}) => {
+	init = ({segment, x = 6, y = 6, transition = false}) => {
+
+		x = standardiseAxis(x);
+		y = standardiseAxis(y);
+		segment = calcSegmentSize(segment, x);
 
         return (
-			`<div class="pattern pattern--${modifier} pattern--xAxis${x} pattern--yAxis${y} pattern--${transition}Transition"
+			`<div class="pattern pattern--xAxis${x} pattern--yAxis${y} pattern--${transition}Transition"
 				  style="background: ${extractBackground(segment)}; padding-top: ${calcHeight(x, y)}%;">
 				<div class="pattern__wrapper">
-					${generateRows(calcSegmentSize(segment, x), x, y)}
+					${generateRows(segment, x, y)}
 				</div>
 			</div>`
 		);
@@ -61,6 +65,14 @@ module.exports = (() => {
 		}
 
 		return html;
+
+	},
+
+	standardiseAxis = (axis) => {
+
+		axis = axis < 2 ? 2 : axis > 20 ? 20 : axis;
+
+		return axis % 2 > 0 ? axis + 1 : axis;
 
 	},
 

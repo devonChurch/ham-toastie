@@ -53,11 +53,11 @@
 	
 	    var thumbnails = document.getElementById('thumbnails');
 	
-	    for (var i = 0; i < 1; i += 1) {
+	    for (var i = 0; i < 20; i += 1) {
 	
 	        var data = hamToastie.randomise.init();
 	        var segment = hamToastie.segment.init(data);
-	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 20, y: 6, transition: true });
+	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 10, y: 10, transition: true });
 	
 	        thumbnails.innerHTML += thumbnail;
 	    }
@@ -99,8 +99,8 @@
 	
 			var path = buildPath();
 			var hue = calcHue();
-			var saturation = calcPercentage({ min: 60, max: 100, seperate: 40 });
-			var luminosity = calcPercentage({ min: 40, max: 60, seperate: 40 });
+			var saturation = calcPercentage({ min: 30, max: 100, seperate: 40 });
+			var luminosity = calcPercentage({ min: 20, max: 60, seperate: 40 });
 			var width = calcWidth();
 			var rotation = calcRotation();
 	
@@ -135,7 +135,10 @@
 		},
 		    calcHue = function calcHue() {
 	
-			return helpers.randomise({ max: 360 });
+			var background = helpers.randomise({ max: 360 });
+			var path = helpers.randomise({ max: 360 });
+	
+			return { background: background, path: path };
 		},
 		    calcPercentage = function calcPercentage(_ref) {
 			var min = _ref.min;
@@ -195,7 +198,7 @@
 			var type = arguments.length <= 1 || arguments[1] === undefined ? 'background' : arguments[1];
 	
 	
-			return 'hsl(' + data.hue + ', ' + data.saturation[type] + '%, ' + data.luminosity[type] + '%)';
+			return 'hsl(' + data.hue[type] + ', ' + data.saturation[type] + '%, ' + data.luminosity[type] + '%)';
 		};
 	
 		return {
@@ -217,11 +220,7 @@
 	
 		var init = function init(data) {
 	
-			return '<div class="pattern__segment"\n\t\t\t\t  style=""\n\t\t\t\t  data-background="' + helpers.hsl(data) + '">\n\t\t\t\t<div class="pattern__flip">\n\t\t\t\t\t<div class="pattern__rotate pattern__rotate--' + data.rotation + '">\n\t\t\t\t\t\t' + compiledSvgs(data) + '\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>'
-	
-			// <script></script>
-			// data-json="serialiseJson"
-			;
+			return '<div class="pattern__segment"\n\t\t\t\t  style=""\n\t\t\t\t  data-background="' + helpers.hsl(data) + '">\n\t\t\t\t<div class="pattern__flip">\n\t\t\t\t\t<div class="pattern__rotate pattern__rotate--' + data.rotation + '">\n\t\t\t\t\t\t' + compiledSvgs(data) + '\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>';
 		},
 		    compiledSvgs = function compiledSvgs(path) {
 	
@@ -282,8 +281,6 @@
 	
 		var init = function init(_ref) {
 			var segment = _ref.segment;
-			var _ref$modifier = _ref.modifier;
-			var modifier = _ref$modifier === undefined ? 'thumbnail' : _ref$modifier;
 			var _ref$x = _ref.x;
 			var x = _ref$x === undefined ? 6 : _ref$x;
 			var _ref$y = _ref.y;
@@ -292,7 +289,11 @@
 			var transition = _ref$transition === undefined ? false : _ref$transition;
 	
 	
-			return '<div class="pattern pattern--' + modifier + ' pattern--xAxis' + x + ' pattern--yAxis' + y + ' pattern--' + transition + 'Transition"\n\t\t\t\t  style="background: ' + extractBackground(segment) + '; padding-top: ' + calcHeight(x, y) + '%;">\n\t\t\t\t<div class="pattern__wrapper">\n\t\t\t\t\t' + generateRows(calcSegmentSize(segment, x), x, y) + '\n\t\t\t\t</div>\n\t\t\t</div>';
+			x = standardiseAxis(x);
+			y = standardiseAxis(y);
+			segment = calcSegmentSize(segment, x);
+	
+			return '<div class="pattern pattern--xAxis' + x + ' pattern--yAxis' + y + ' pattern--' + transition + 'Transition"\n\t\t\t\t  style="background: ' + extractBackground(segment) + '; padding-top: ' + calcHeight(x, y) + '%;">\n\t\t\t\t<div class="pattern__wrapper">\n\t\t\t\t\t' + generateRows(segment, x, y) + '\n\t\t\t\t</div>\n\t\t\t</div>';
 		},
 		    extractBackground = function extractBackground(segment) {
 	
@@ -327,6 +328,12 @@
 			}
 	
 			return html;
+		},
+		    standardiseAxis = function standardiseAxis(axis) {
+	
+			axis = axis < 2 ? 2 : axis > 20 ? 20 : axis;
+	
+			return axis % 2 > 0 ? axis + 1 : axis;
 		},
 		    generateSegments = function generateSegments(segment, x) {
 	

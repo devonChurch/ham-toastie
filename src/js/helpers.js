@@ -18,7 +18,7 @@ module.exports = (() => {
 
 	hsl = (data, type = 'background') => {
 
-		return `hsl(${data.hue}, ${data.saturation[type]}%, ${data.luminosity[type]}%)`;
+		return `hsl(${data.hue[type]}, ${data.saturation[type]}%, ${data.luminosity[type]}%)`;
 
 	};
 

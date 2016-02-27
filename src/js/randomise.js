@@ -12,8 +12,8 @@ module.exports = (() => {
 
 		const path = buildPath();
 		const hue = calcHue();
-		const saturation = calcPercentage({min: 60, max: 100, seperate: 40});
-		const luminosity = calcPercentage({min: 40, max: 60, seperate: 40});
+		const saturation = calcPercentage({min: 30, max: 100, seperate: 40});
+		const luminosity = calcPercentage({min: 20, max: 60, seperate: 40});
 		const width = calcWidth();
 		const rotation = calcRotation();
 
@@ -57,7 +57,10 @@ module.exports = (() => {
 
 	calcHue = () => {
 
-		return helpers.randomise({max: 360});
+		const background = helpers.randomise({max: 360});
+		const path = helpers.randomise({max: 360});
+
+		return {background, path};
 
 	},
 
