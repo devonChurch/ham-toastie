@@ -51,19 +51,25 @@
 	
 	{
 	
-	    // Setting up hook for Codepen demo.
-	    window.hamToastie = hamToastie;
+	    var debug = false;
 	
-	    // Small test script used to review generated patterns while developing.
-	    var thumbnails = document.getElementById('thumbnails');
+	    if (debug) {
 	
-	    for (var i = 0; i < 40; i += 1) {
+	        // Small test script used to review generated patterns while developing.
+	        var thumbnails = document.getElementById('thumbnails');
 	
-	        var data = hamToastie.randomise.init();
-	        var segment = hamToastie.segment.init(data);
-	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 6, y: 6, transition: false });
+	        for (var i = 0; i < 40; i += 1) {
 	
-	        thumbnails.innerHTML += thumbnail;
+	            var data = hamToastie.randomise.init();
+	            var segment = hamToastie.segment.init(data);
+	            var thumbnail = hamToastie.layout.init({ segment: segment, x: 6, y: 6, transition: false });
+	
+	            thumbnails.innerHTML += thumbnail;
+	        }
+	    } else {
+	
+	        // Setting up hook for Codepen demo.
+	        window.hamToastie = hamToastie;
 	    }
 	}
 

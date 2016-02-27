@@ -1,27 +1,26 @@
 {
-  "name": "beetroot-juice",
+  "name": "ham-toastie",
   "version": "1.0.0",
-  "description": "A podcast application using React and Material Design",
+  "description": "An SVG geometric pattern generator",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack"
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/devonChurch/beetroot-juice.git"
+    "url": "git+https://github.com/devonChurch/ham-toastie.git"
   },
   "keywords": [
-    "React",
-    "ES6",
-    "HTML5 audio"
+    "SVG",
+    "Procedurally generated",
+    "Geometric patterns"
   ],
   "author": "Devon Church",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/devonChurch/beetroot-juice/issues"
+    "url": "https://github.com/devonChurch/ham-toastie/issues"
   },
-  "homepage": "https://github.com/devonChurch/beetroot-juice#readme",
+  "homepage": "https://github.com/devonChurch/ham-toastie#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.3",
     "babel-core": "^6.5.2",
