@@ -51,13 +51,17 @@
 	
 	{
 	
+	    // Setting up hook for Codepen demo.
+	    window.hamToastie = hamToastie;
+	
+	    // Small test script used to review generated patterns while developing.
 	    var thumbnails = document.getElementById('thumbnails');
 	
-	    for (var i = 0; i < 20; i += 1) {
+	    for (var i = 0; i < 40; i += 1) {
 	
 	        var data = hamToastie.randomise.init();
 	        var segment = hamToastie.segment.init(data);
-	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 10, y: 10, transition: true });
+	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 6, y: 6, transition: false });
 	
 	        thumbnails.innerHTML += thumbnail;
 	    }
@@ -112,9 +116,11 @@
 			var x = data[0].x;
 			var y = data[0].y;
 	
-			while (y < size && x > 0 && x < size) {
+			while (y < size && x >= 0 && x <= size) {
 	
 				x = helpers.boolean() ? x - offsetPath() : x + offsetPath();
+				if (y < size / 2) x = x < 0 ? 0 : x > size ? size : x;
+	
 				y += offsetPath();
 	
 				data.push({ x: x, y: y });
@@ -160,7 +166,7 @@
 			var min = 2;
 			var max = 5;
 	
-			return helpers.randomise({ min: min, max: max * 10 }) / 10;
+			return helpers.randomise({ min: min, max: max });
 		},
 		    calcRotation = function calcRotation() {
 	

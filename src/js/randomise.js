@@ -27,9 +27,11 @@ module.exports = (() => {
 		let x = data[0].x;
 		let y = data[0].y;
 
-		while(y < size && x > 0 && x < size) {
+		while (y < size && x >= 0 && x <= size) {
 
 			x = helpers.boolean() ? x - offsetPath() : x + offsetPath();
+			if (y < size / 2) x = x < 0 ? 0 : x > size ? size : x;
+
 			y += offsetPath();
 
 			data.push({x, y});
@@ -82,7 +84,7 @@ module.exports = (() => {
 		const min = 2;
 		const max = 5;
 
-		return helpers.randomise({min: min, max: max * 10}) / 10;
+		return helpers.randomise({min: min, max: max});
 
 	},
 
