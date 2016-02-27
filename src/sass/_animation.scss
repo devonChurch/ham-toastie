@@ -1,0 +1,106 @@
+.pattern--trueTransition {
+
+    @for $ty from 1 through $max / 2 {
+
+        $totalY: $ty * 2;
+
+        &.pattern--yAxis#{$totalY} {
+
+            @for $tx from 1 through $max / 2 {
+
+                $totalX: $tx * 2;
+
+                &.pattern--xAxis#{$totalX} {
+
+                    .pattern__row {
+
+                        // (Y) counter to calculate delay independant of $i.
+                        $cy: 0;
+
+                        @for $iy from $totalY / 2 through 1  {
+
+                            &:nth-of-type(#{$iy}) {
+
+                                // (X) counter to calculate delay independant of $i.
+                                $cx: 0;
+
+                                @for $ix from $totalX / 2 through 1  {
+
+                                    .pattern__segment:nth-of-type(#{$ix}) {
+                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        transform-origin: right bottom;
+                                    }
+
+                                    $cx: $cx + 1;
+
+                                }
+
+                                // Reset (X) counter.
+                                $cx: 0;
+
+                                @for $ix from ($totalX / 2) + 1 through $totalX  {
+
+                                    .pattern__segment:nth-of-type(#{$ix}) {
+                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        transform-origin: left bottom;
+                                    }
+
+                                    $cx: $cx + 1;
+
+                                }
+                            }
+
+                            $cy: $cy + 1;
+
+                        }
+                        //
+                        //
+                        //
+                        //
+                        //
+
+                        // Reset (Y) counter.
+                        $cy: 0;
+
+                        @for $iy from ($totalY / 2) + 1 through $totalY {
+
+                            &:nth-of-type(#{$iy}) {
+
+                                // (X) counter to calculate delay independant of $i.
+                                $cx: 0;
+
+                                @for $ix from $totalX / 2 through 1  {
+
+                                    .pattern__segment:nth-of-type(#{$ix}) {
+                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        transform-origin: right top;
+                                    }
+
+                                    $cx: $cx + 1;
+
+                                }
+
+                                // Reset (X) counter
+                                $cx: 0;
+
+                                @for $ix from ($totalX / 2) + 1 through $totalX  {
+
+                                    .pattern__segment:nth-of-type(#{$ix}) {
+                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        transform-origin: left top;
+                                    }
+
+                                    $cx: $cx + 1;
+
+                                }
+                            }
+
+                            $cy: $cy + 1;
+
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

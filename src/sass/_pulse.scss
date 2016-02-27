@@ -1,0 +1,34 @@
+$opacity--dormant: 1;
+$opacity--active: 0.6;
+$scale--dormant: 1;
+$scale--active--small: 1.025;
+$scale--active--large: 1.1;
+
+@for $i from 1 through $max / 2 {
+
+    $axis: $i * 2;
+    $scale--active: (($scale--active--large - $scale--active--small) / $max * $axis) + $scale--active--small;
+
+    @keyframes pulseAxis#{$axis} {
+
+    	0% {
+    		opacity: $opacity--dormant;
+    		transform: scale($scale--dormant);
+    	}
+
+    	30% {
+    		opacity: $opacity--active;
+    		transform: scale($scale--active);
+    	}
+
+        60% {
+    		opacity: $opacity--dormant;
+    		transform: scale($scale--dormant);
+    	}
+
+        100% {
+            opacity: $opacity--dormant;
+            transform: scale($scale--dormant);
+        }
+    }
+}
