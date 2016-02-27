@@ -1,0 +1,94 @@
+.pattern {
+    height: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.pattern__wrapper {
+    @include fillContainer;
+
+    .pattern--trueTransition & {
+        animation: {
+            direction: alternate;
+            duration: $speed--zoom;
+            iteration-count: infinite;
+            name: zoom;
+            // timing-function: ease-out;
+        }
+    }
+}
+
+.pattern__row {
+
+    &:nth-of-type(odd) {
+
+        .pattern__segment:nth-child(odd) .pattern__flip  {
+            transform: rotateX(180deg);
+        }
+
+        .pattern__segment:nth-child(even) .pattern__flip {
+            transform: rotateX(180deg) rotateY(180deg);
+        }
+    }
+
+    &:nth-of-type(even) .pattern__segment:nth-child(even) .pattern__flip {
+        transform: rotateY(180deg);
+    }
+}
+
+.pattern__segment {
+    animation: {
+        // delay: (($i + $j) * 0.2) + s;
+        duration: $speed--segment;
+        iteration-count: infinite;
+        name: pulse;
+        timing-function: ease-out;
+    }
+	// border: 1px solid gray;
+	float: left;
+	height: 0;
+	position: relative;
+	transform-origin: left top;
+}
+
+.pattern__flip {
+    @include fillContainer;
+}
+
+.pattern__rotate {
+    @include fillContainer;
+
+    @for $i from 0 through 3 {
+
+        $deg: $i * 90;
+
+        &--#{$deg} {
+            transform: rotate(#{$deg}deg);
+        }
+    }
+}
+
+.pattern__svg {
+    height: auto;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    &:nth-of-type(2) {
+        transform: rotate(90deg) rotateX(180deg);
+    }
+
+    &:nth-of-type(1n+3) {
+        opacity: 0.5;
+    }
+
+    &:nth-of-type(3) {
+        transform: rotateX(180deg) rotateY(180deg);
+    }
+
+    &:nth-of-type(4) {
+        transform: rotate(-90deg) rotateX(180deg);
+    }
+}

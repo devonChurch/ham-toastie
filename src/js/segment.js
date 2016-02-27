@@ -10,7 +10,8 @@ module.exports = (() => {
 
         return (
 			`<div class="pattern__segment"
-				  style="background: ${helpers.hsl(data)}">
+				  style=""
+				  data-background="${helpers.hsl(data)}">
 				<div class="pattern__flip">
 					<div class="pattern__rotate pattern__rotate--${data.rotation}">
 						${compiledSvgs(data)}
@@ -39,7 +40,7 @@ module.exports = (() => {
 
 		return (
 			`<svg class="pattern__svg"
-				  style="stroke-width:2px;stroke:${helpers.hsl(data, 'path')};fill:transparent;"
+				  style="stroke-width:${data.width}px; stroke:${helpers.hsl(data, 'path')}; fill:transparent;"
 				  version="1.0"
 				  xmlns="http://www.w3.org/2000/svg"
 				  xmlns:xlink="http://www.w3.org/1999/xlink"

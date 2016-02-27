@@ -5,14 +5,17 @@ const hamToastie = require('./js/app');
 
 
 {
-	const data = hamToastie.randomise.init();
-	console.log(data);
 
-	const segment = hamToastie.segment.init(data);
-    console.log(segment);
+    const thumbnails = document.getElementById('thumbnails');
 
-	const thumbnail = hamToastie.thumbnail.init(segment);
+    for (let i = 0; i < 1; i += 1) {
 
-	document.body.innerHTML += thumbnail;
+        const data = hamToastie.randomise.init();
+        const segment = hamToastie.segment.init(data);
+        const thumbnail = hamToastie.layout.init({segment, x: 20, y: 20, transition: true});
+
+        thumbnails.innerHTML += thumbnail;
+
+    }
 
 }

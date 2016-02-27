@@ -8,17 +8,16 @@ module.exports = (() => {
 
 	size = 100,
 
-	path = [],
-
 	init = () => {
 
 		const path = buildPath();
 		const hue = calcHue();
 		const saturation = calcPercentage({min: 60, max: 100, seperate: 40});
 		const luminosity = calcPercentage({min: 40, max: 60, seperate: 40});
+		const width = calcWidth();
 		const rotation = calcRotation();
 
-		return {path, hue, saturation, luminosity, rotation};
+		return {path, hue, saturation, luminosity, width, rotation};
 
 	},
 
@@ -72,6 +71,15 @@ module.exports = (() => {
 			background: swap ? two : one,
 			path: swap ? one : two
 		};
+
+	},
+
+	calcWidth = () => {
+
+		const min = 2;
+		const max = 5;
+
+		return helpers.randomise({min: min, max: max * 10}) / 10;
 
 	},
 

@@ -1,45 +1,5 @@
-$total: 2;
-$hue: 144;
-$opacity--dormant: 1;
-$opacity--active: 0.35;
-$scale--dormant: 1;
-$scale--active: 1.025;
-$speed--segment: 2s;
+$speed--segment: 4s;
 $speed--zoom: $speed--segment / 2;
-
-@keyframes zoom {
-
-	0% {
-		transform: scale(1);
-	}
-
-	100% {
-		transform: scale(1.025);
-	}
-}
-
-@keyframes pulse {
-
-	0% {
-		opacity: $opacity--dormant;
-		transform: scale($scale--dormant);
-	}
-
-	30% {
-		opacity: $opacity--active;
-		transform: scale($scale--active);
-	}
-
-	60% {
-		opacity: $opacity--dormant;
-		transform: scale($scale--dormant);
-	}
-
-	100% {
-		opacity: $opacity--dormant;
-		transform: scale($scale--dormant);
-	}
-}
 
 @mixin transformOrigin($i, $horizontal, $vertical: null) {
 
@@ -54,66 +14,15 @@ $speed--zoom: $speed--segment / 2;
     }
 
     transform-origin: $horizontal $vertical;
+
 }
 
 .pattern {
 
-    &__transition {
-
-    	.pattern {
-    		animation: {
-    			direction: alternate;
-    			duration: $speed--zoom;
-    			iteration-count: infinite;
-    			name: zoom;
-    			// timing-function: ease-out;
-    		}
-    	}
-    	.segment {
-    		animation: {
-    			// delay: (($i + $j) * 0.2) + s;
-    			duration: $speed--segment;
-    			iteration-count: infinite;
-    			name: pulse;
-    			timing-function: ease-out;
-    		}
-    	}
-
-    	@for $i from 0 through $total {
-
-    		$delay: $speed--segment / $total;
-
-    		.row:nth-of-type(#{$i}) {
-
-    			$k: 0;
-
-    			@for $j from ($total / 2) through 1 {
-
-    				.segment:nth-of-type(#{$j}) {
-    					animation-delay: ($k * $delay);
-    					@include transformOrigin($i, right);
-    				}
-
-    				$k: $k + 1;
-    			}
-
-    			$k: 0;
-
-    			@for $l from (($total / 2) + 1) through $total {
-
-    				.segment:nth-of-type(#{$l}) {
-    					animation-delay: ($k * $delay);
-    					@include transformOrigin($i, left);
-    				}
-
-    				$k: $k + 1;
-    			}
-    		}
-    	}
-    }
+    &
 
     &--thumbnail {
-        $size: 120px;
+        $size: $total * 60px;
         height: $size;
         width: $size;
 
@@ -124,98 +33,11 @@ $speed--zoom: $speed--segment / 2;
         }
     }
 
-    &__flip,
-    &__rotate {
-    	height: 100%;
-    	left: 0;
-    	position: absolute;
-    	top: 0;
-    	width: 100%;
-    }
 
-    &__rotate {
 
-        @for $i from 0 through 3 {
 
-            $deg: $i * 90;
 
-            &--#{$deg} {
-                transform: rotate(#{$deg}deg);
-            }
-        }
-    }
 
-    &__row:nth-of-type(odd) {
 
-    	.pattern__segment:nth-child(odd) {
-    		// transform-origin: right top;
 
-    		.pattern__flip  {
-    			transform: rotateX(180deg);
-    		}
-    	}
-
-    	.pattern__segment:nth-child(even) {
-    		// transform-origin: left top;
-
-    		.pattern__flip {
-    			transform: rotateX(180deg) rotateY(180deg);
-    		}
-    	}
-    }
-
-    &__row:nth-of-type(even) {
-
-    	.pattern__segment:nth-child(odd) {
-    		// transform-origin: right bottom;
-    	}
-
-    	.pattern__segment:nth-child(even) {
-    		// transform-origin: left bottom;
-
-    		.pattern__flip {
-    			transform: rotateY(180deg);
-    		}
-    	}
-    }
-
-    &__segment {
-    	// border: 1px solid gray;
-    	float: left;
-    	height: 0;
-    	opacity: $opacity--dormant;
-    	position: relative;
-    	transform-origin: left top;
-    }
-
-    &__svg {
-        height: auto;
-        left: 0;
-        position: absolute;
-        stroke: red;
-        stroke-width: 2px;
-        top: 0;
-        width: 100%;
-
-        &:nth-of-type(-1n+2) {
-            stroke: hsl($hue, 100%, 65%);
-        }
-
-        &:nth-of-type(2) {
-            transform: rotate(90deg) rotateX(180deg);
-        }
-
-        &:nth-of-type(1n+3) {
-            opacity: 0.5;
-            stroke: hsl($hue, 40%, 60%);
-        }
-
-        &:nth-of-type(3) {
-            transform: rotateX(180deg) rotateY(180deg);
-        }
-
-        &:nth-of-type(4) {
-            transform: rotate(-90deg) rotateX(180deg);
-        }
-    }
 }

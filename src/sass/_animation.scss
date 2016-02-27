@@ -1,0 +1,382 @@
+// $maxBase: 10;
+// $maxTrue: $maxBase * 2;
+
+// @mixin transformOrigin($i, $horizontal, $vertical: null) {
+//
+//     @if ($i > ($max / 2)) {
+//
+//         $vertical: top;
+//
+//     } @else {
+//
+//         $vertical: bottom;
+//
+//     }
+//
+//     transform-origin: $horizontal $vertical;
+//
+// }
+
+/*
+
+.pattern {
+
+    &.pattern__yAxis1 {
+
+        &.pattern__xAxis1 {
+
+        }
+
+        &.pattern__xAxis2 {
+
+        }
+
+        &.pattern__xAxis3 {
+
+        }
+    }
+
+    &.pattern__yAxis2 {
+
+        &.pattern__xAxis1 {
+
+        }
+
+        &.pattern__xAxis2 {
+
+        }
+
+        &.pattern__xAxis3 {
+
+        }
+    }
+}
+
+*/
+
+// .pattern--trueTransition {
+//
+//     @for $y from 1 through $max {
+//
+//         &.pattern--yAxis#{$y} {
+//
+//             @for $x from 1 through $max {
+//
+//                 &.pattern--xAxis#{$x} {
+//
+//
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// $delay: $speed--segment / $max;
+
+// @mixin delaySegments() {
+//
+//     $c: 0;
+//
+//     @for $j from ($x / 2) through 1 {
+//
+//         .pattern__segment:nth-of-type(#{$j}) {
+//             animation-delay: ($c * $delay);
+//             @include transformOrigin($i, right);
+//         }
+//
+//         $c: $c + 1;
+//     }
+//
+//     $c: 0;
+//
+//     @for $l from (($max / 2) + 1) through $max {
+//
+//         .pattern__segment:nth-of-type(#{$l}) {
+//             animation-delay: ($c * $delay);
+//             @include transformOrigin($i, left);
+//         }
+//
+//         $c: $c + 1;
+//     }
+// }
+//
+// .pattern--trueTransition {
+//
+//     // Loop through the maximum number of possible x and y segments.
+//     @for $yBase from 1 through $maxBase {
+//
+//         // The pattern sequence increments by 2 so that there are always an even
+//         // number of rows and columns.
+//         $yTrue: $yBase * 2;
+//
+//         &.pattern--yAxis#{$yTrue} {
+//
+//             // Counter to keep track of delay increments.
+//             $c: 0;
+//
+//             // Loop through top half of rows for the current $yTrue itteration.
+//             @for $i from ($max / 2) through 1 {
+//
+//                 .pattern__row:nth-of-type(#{$i}) {
+//                     // animation-delay: ($k * $delay);
+//                     // @include transformOrigin($i, right);
+//
+//                     @for $x from 1 through $max {
+//
+//                         &.pattern--xAxis#{$x} {
+//
+//
+//                         }
+//                     }
+//                 }
+//
+//                 $c: $c + 1;
+//             }
+//
+//             // @for $x from 1 through $max {
+//             //
+//             //     &.pattern--xAxis#{$x} {
+//             //
+//             //
+//             //     }
+//             // }
+//         }
+//     }
+// }
+$total: 20;
+$size: 50px;
+$delay: 0.5;
+
+.pattern--trueTransition .pattern__row {
+	// height: $size;
+	// width: $total * $size;
+
+	// (Y) counter to calculate delay independant of $i.
+	$cy: 0;
+
+	@for $iy from $total / 2 through 1  {
+
+		&:nth-of-type(#{$iy}) {
+
+			// (X) counter to calculate delay independant of $i.
+			$cx: 0;
+
+			@for $ix from $total / 2 through 1  {
+
+				.pattern__segment:nth-of-type(#{$ix}) {
+					animation-delay: (($cy + $cx) * $delay) + s;
+                    transform-origin: right bottom;
+				}
+
+				$cx: $cx + 1;
+
+			}
+
+			// Reset (X) counter.
+			$cx: 0;
+
+			@for $ix from ($total / 2) + 1 through $total  {
+
+				.pattern__segment:nth-of-type(#{$ix}) {
+					animation-delay: (($cy + $cx) * $delay) + s;
+                    transform-origin: left bottom;
+				}
+
+				$cx: $cx + 1;
+
+			}
+		}
+
+		$cy: $cy + 1;
+
+	}
+	//
+	//
+	//
+	//
+	//
+
+	// Reset (Y) counter.
+	$cy: 0;
+
+	@for $iy from ($total / 2) + 1 through $total {
+
+		&:nth-of-type(#{$iy}) {
+
+			// (X) counter to calculate delay independant of $i.
+			$cx: 0;
+
+			@for $ix from $total / 2 through 1  {
+
+				.pattern__segment:nth-of-type(#{$ix}) {
+					animation-delay: (($cy + $cx) * $delay) + s;
+                    transform-origin: right top;
+				}
+
+				$cx: $cx + 1;
+
+			}
+
+			// Reset (X) counter
+			$cx: 0;
+
+			@for $ix from ($total / 2) + 1 through $total  {
+
+				.pattern__segment:nth-of-type(#{$ix}) {
+					animation-delay: (($cy + $cx) * $delay) + s;
+                    transform-origin: left top;
+				}
+
+				$cx: $cx + 1;
+
+			}
+		}
+
+		$cy: $cy + 1;
+
+	}
+}
+
+
+
+
+
+
+
+
+
+
+// .pattern--trueTransition .pattern__row {
+// 	// height: $size;
+// 	// width: $total * $size;
+//
+// 	// (Y) counter to calculate delay independant of $i.
+// 	$cy: 0;
+//
+// 	@for $iy from $total / 2 through 1  {
+//
+// 		&:nth-of-type(#{$iy}) {
+//
+// 			// (X) counter to calculate delay independant of $i.
+// 			$cx: 0;
+//
+// 			@for $ix from $total / 2 through 1  {
+//
+// 				.pattern__segment:nth-of-type(#{$ix}) {
+// 					animation-delay: (($cy + $cx) * $delay) + s;
+// 				}
+//
+// 				$cx: $cx + 1;
+//
+// 			}
+//
+// 			// Reset (X) counter.
+// 			$cx: 0;
+//
+// 			@for $ix from ($total / 2) + 1 through $total  {
+//
+// 				.pattern__segment:nth-of-type(#{$ix}) {
+// 					animation-delay: (($cy + $cx) * $delay) + s;
+// 				}
+//
+// 				$cx: $cx + 1;
+//
+// 			}
+// 		}
+//
+// 		$cy: $cy + 1;
+//
+// 	}
+// 	//
+// 	//
+// 	//
+// 	//
+// 	//
+//
+// 	// Reset (Y) counter.
+// 	$cy: 0;
+//
+// 	@for $iy from ($total / 2) + 1 through $total {
+//
+// 		&:nth-of-type(#{$iy}) {
+//
+// 			// (X) counter to calculate delay independant of $i.
+// 			$cx: 0;
+//
+// 			@for $ix from $total / 2 through 1  {
+//
+// 				.pattern__segment:nth-of-type(#{$ix}) {
+// 					animation-delay: (($cy + $cx) * $delay) + s;
+// 				}
+//
+// 				$cx: $cx + 1;
+//
+// 			}
+//
+// 			// Reset (X) counter
+// 			$cx: 0;
+//
+// 			@for $ix from ($total / 2) + 1 through $total  {
+//
+// 				.pattern__segment:nth-of-type(#{$ix}) {
+// 					animation-delay: (($cy + $cx) * $delay) + s;
+// 				}
+//
+// 				$cx: $cx + 1;
+//
+// 			}
+// 		}
+//
+// 		$cy: $cy + 1;
+//
+// 	}
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .pattern--trueTransition--XXXXX {
+//
+//     @for $i from 0 through $max {
+//
+//         $delay: $speed--segment / $max;
+//
+//         .pattern__row:nth-of-type(#{$i}) {
+//
+//             $k: 0;
+//
+//             @for $j from ($max / 2) through 1 {
+//
+//                 .pattern__segment:nth-of-type(#{$j}) {
+//                     animation-delay: ($k * $delay);
+//                     @include transformOrigin($i, right);
+//                 }
+//
+//                 $k: $k + 1;
+//             }
+//
+//             $k: 0;
+//
+//             @for $l from (($max / 2) + 1) through $max {
+//
+//                 .pattern__segment:nth-of-type(#{$l}) {
+//                     animation-delay: ($k * $delay);
+//                     @include transformOrigin($i, left);
+//                 }
+//
+//                 $k: $k + 1;
+//             }
+//         }
+//     }
+// }

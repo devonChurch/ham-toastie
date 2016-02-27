@@ -1,0 +1,27 @@
+$opacity--dormant: 1;
+$opacity--active: 0.6;
+$scale--dormant: 1;
+$scale--active: 1.1; // 1.025;
+
+@keyframes pulse {
+
+	0% {
+		opacity: $opacity--dormant;
+		transform: scale($scale--dormant);
+	}
+
+	30% {
+		opacity: $opacity--active;
+		transform: scale($scale--active);
+	}
+
+    60% {
+		opacity: $opacity--dormant;
+		transform: scale($scale--dormant);
+	}
+
+    100% {
+        opacity: $opacity--dormant;
+        transform: scale($scale--dormant);
+    }
+}

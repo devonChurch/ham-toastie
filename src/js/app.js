@@ -2,6 +2,6 @@
 
 const randomise = require('./randomise');
 const segment = require('./segment');
-const thumbnail = require('./thumbnail');
+const layout = require('./layout');
 
-module.exports = {randomise, segment, thumbnail};
+module.exports = {randomise, segment, layout};

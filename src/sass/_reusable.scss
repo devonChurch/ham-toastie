@@ -1,0 +1,15 @@
+// ////////////////////////////
+$total: 8; ////////////////////
+// ////////////////////////////
+
+
+$speed--segment: 2s;
+$speed--zoom: $speed--segment / 2;
+
+@mixin fillContainer {
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
