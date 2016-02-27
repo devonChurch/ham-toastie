@@ -14,7 +14,7 @@
             duration: $speed--zoom;
             iteration-count: infinite;
             name: zoom;
-            // timing-function: ease-out;
+            // timing-function: $easeInOutQuad;
         }
     }
 }
@@ -38,18 +38,30 @@
 }
 
 .pattern__segment {
-    animation: {
-        // delay: (($i + $j) * 0.2) + s;
-        duration: $speed--segment;
-        iteration-count: infinite;
-        name: pulse;
-        timing-function: ease-out;
-    }
-	// border: 1px solid gray;
 	float: left;
 	height: 0;
 	position: relative;
 	transform-origin: left top;
+
+    @for $i from 1 through $max / 2 {
+
+        $axis: $i * 2;
+
+        .pattern--yAxis#{$axis}.pattern--trueTransition &,
+        .pattern--yAxis#{$axis}.pattern--trueTransition & {
+            animation-name: pulseAxis#{$axis};
+        }
+
+    }
+
+    .pattern--trueTransition & {
+        animation: {
+            duration: $speed--segment;
+            iteration-count: infinite;
+            // name: pulse;
+            timing-function: ease-out;
+        }
+    }
 }
 
 .pattern__flip {

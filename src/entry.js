@@ -12,7 +12,7 @@ const hamToastie = require('./js/app');
 
         const data = hamToastie.randomise.init();
         const segment = hamToastie.segment.init(data);
-        const thumbnail = hamToastie.layout.init({segment, x: 20, y: 20, transition: true});
+        const thumbnail = hamToastie.layout.init({segment, x: 20, y: 6, transition: true});
 
         thumbnails.innerHTML += thumbnail;
 

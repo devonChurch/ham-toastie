@@ -57,7 +57,7 @@
 	
 	        var data = hamToastie.randomise.init();
 	        var segment = hamToastie.segment.init(data);
-	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 20, y: 20, transition: true });
+	        var thumbnail = hamToastie.layout.init({ segment: segment, x: 20, y: 6, transition: true });
 	
 	        thumbnails.innerHTML += thumbnail;
 	    }

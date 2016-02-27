@@ -2,9 +2,13 @@
 $total: 8; ////////////////////
 // ////////////////////////////
 
+$max: 20;
+$delay: 0.5;
 
 $speed--segment: 2s;
 $speed--zoom: $speed--segment / 2;
+
+$easeInOutQuad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
 @mixin fillContainer {
     height: 100%;
