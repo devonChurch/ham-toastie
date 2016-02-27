@@ -1,14 +1,16 @@
 .pattern--trueTransition {
 
-    @for $ty from 1 through $max / 2 {
+    // @for $ty from 1 through $max / 2 {
+    @each $totalY in $yLayouts {
 
-        $totalY: $ty * 2;
+        // $totalY: $ty * 2;
 
         &.pattern--yAxis#{$totalY} {
 
-            @for $tx from 1 through $max / 2 {
+            // @for $tx from 1 through $max / 2 {
+            @each $totalX in $xLayouts {
 
-                $totalX: $tx * 2;
+                // $totalX: $tx * 2;
 
                 &.pattern--xAxis#{$totalX} {
 

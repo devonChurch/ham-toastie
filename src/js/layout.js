@@ -43,10 +43,17 @@ module.exports = (() => {
 	calcSegmentSize = (segment, x) => {
 
 		const refStart = 'style="';
-		const cut = segment.indexOf(refStart) + refStart.length;
+		const refEnd = '"';
+
+		const cutStart = segment.indexOf(refStart) + refStart.length;
+		const extractStart = segment.substr(0, cutStart);
+
+		const cutEnd = segment.indexOf(refEnd);
+		const extractEnd = segment.substr(cutEnd);
+
 		const size = 100 / x;
 
-		return `${segment.substr(0, cut)}padding-top:${size}%; width:${size}%;${segment.substr(cut + 1)}`;
+		return `${extractStart}padding-top:${size}%; width:${size}%;${extractEnd}`;
 
 	},
 
