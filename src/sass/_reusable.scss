@@ -1,9 +1,8 @@
-// ////////////////////////////
-$total: 8; ////////////////////
-// ////////////////////////////
-
 $max: 20;
 $delay: 0.5;
+
+$xLayouts: 8, 20;
+$yLayouts: 8, 10;
 
 $speed--segment: 2s;
 $speed--zoom: $speed--segment / 2;
