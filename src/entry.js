@@ -1,4 +1,4 @@
-require('./sass/style.scss');
+require('./sass/ham-toastie.scss');
 const hamToastie = require('./js/app');
 
 {

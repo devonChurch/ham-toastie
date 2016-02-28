@@ -77,9 +77,7 @@ module.exports = (() => {
 
 	standardiseAxis = (axis) => {
 
-		axis = axis < 2 ? 2 : axis > 20 ? 20 : axis;
-
-		return axis % 2 > 0 ? axis + 1 : axis;
+		return axis < 2 ? 2 : axis % 2 > 0 ? axis + 1 : axis;
 
 	},
 

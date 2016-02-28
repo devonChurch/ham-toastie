@@ -11,7 +11,7 @@
     .pattern--trueTransition & {
         animation: {
             direction: alternate;
-            duration: $speed--zoom;
+            duration: $zoom__speed;
             iteration-count: infinite;
             name: zoom;
             // timing-function: $easeInOutQuad;
@@ -56,9 +56,9 @@
 
     .pattern--trueTransition & {
         animation: {
-            duration: $speed--segment;
+            duration: $pulse__speed;
             iteration-count: infinite;
-            // name: pulse;
+            // name: pulseX; // Generated via _pulse.scss
             timing-function: ease-out;
         }
     }
