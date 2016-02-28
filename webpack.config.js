@@ -8,13 +8,13 @@ module.exports = {
     entry: './entry.js',
     output: {
         path: __dirname + '/dist',
-        filename: 'bundle.js'
+        filename: 'ham-toastie.js'
     },
     plugins: [
         new CopyWebpackPlugin([
             { from: './index.html', to: 'index.html' }
         ]),
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('ham-toastie.css')
     ],
     module: {
         preLoaders: [

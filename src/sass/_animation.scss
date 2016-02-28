@@ -3,14 +3,10 @@
     // @for $ty from 1 through $max / 2 {
     @each $totalY in $yLayouts {
 
-        // $totalY: $ty * 2;
-
         &.pattern--yAxis#{$totalY} {
 
             // @for $tx from 1 through $max / 2 {
             @each $totalX in $xLayouts {
-
-                // $totalX: $tx * 2;
 
                 &.pattern--xAxis#{$totalX} {
 
@@ -29,7 +25,7 @@
                                 @for $ix from $totalX / 2 through 1  {
 
                                     .pattern__segment:nth-of-type(#{$ix}) {
-                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        animation-delay: (($cy + $cx) * $pulse__delay) + s;
                                         transform-origin: right bottom;
                                     }
 
@@ -43,7 +39,7 @@
                                 @for $ix from ($totalX / 2) + 1 through $totalX  {
 
                                     .pattern__segment:nth-of-type(#{$ix}) {
-                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        animation-delay: (($cy + $cx) * $pulse__delay) + s;
                                         transform-origin: left bottom;
                                     }
 
@@ -74,7 +70,7 @@
                                 @for $ix from $totalX / 2 through 1  {
 
                                     .pattern__segment:nth-of-type(#{$ix}) {
-                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        animation-delay: (($cy + $cx) * $pulse__delay) + s;
                                         transform-origin: right top;
                                     }
 
@@ -88,7 +84,7 @@
                                 @for $ix from ($totalX / 2) + 1 through $totalX  {
 
                                     .pattern__segment:nth-of-type(#{$ix}) {
-                                        animation-delay: (($cy + $cx) * $delay) + s;
+                                        animation-delay: (($cy + $cx) * $pulse__delay) + s;
                                         transform-origin: left top;
                                     }
 

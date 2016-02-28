@@ -1,13 +1,10 @@
-$scale--dormant: 1;
-$scale--active: 1.025;
-
 @keyframes zoom {
 
 	0% {
-		transform: scale($scale--dormant);
+		transform: scale($zoom__scale--dormant);
 	}
 
 	100% {
-		transform: scale($scale--active);
+		transform: scale($zoom__scale--active);
 	}
 }
