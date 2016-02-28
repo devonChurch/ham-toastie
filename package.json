@@ -1,6 +1,6 @@
 {
   "name": "ham-toastie",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An SVG geometric pattern generator",
   "main": "index.js",
   "scripts": {
