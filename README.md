@@ -87,7 +87,7 @@ Below is the general process for injecting a pattern into the DOM. This process 
     var pattern = document.getElementsByClassName('pattern')[0];
     pattern.classList.add('pattern--trueTransition');
     ```
-    - Since the pulse animation is driven completely via CSS you will need to define the possible segment arrangements that you will use during a pages lifecycle. This lets SASS figure out the exact centre of the pattern so that the pulse emirates from the correct location. We also modify animation scale properties based on the amount of segments per axis.You can account for a wide range of permutations via a SASS loop however this will result in redundant code bloat so purposely defining your layouts is more sensible.
+    - Since the pulse animation is driven completely via CSS you will need to define the possible segment arrangements that you will use during a pages lifecycle. This lets SASS figure out the exact centre of the pattern so that the pulse emanates from the correct location. We also modify animation scale properties based on the amount of segments per axis.You can account for a wide range of permutations via a SASS loop however this will result in redundant code bloat so purposely defining your layouts is more sensible.
     ```
     // The above two demos use an 8x8 and a 20x10 segment grid so we account for
     // these here when preprocessing out sass.
