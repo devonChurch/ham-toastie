@@ -1,13 +1,18 @@
-# Ham Toastie
+# Ham Toastie 🐖 🥓 🍞 😋
 
-An SVG geometric pattern generator
+An SVG geometric pattern generator that can be:
++ Distilled down into a _concise/compact_ JSON syntax for _storage/reuse_.
++ Layered into a **pulsing** _hero background_ for presentation purposes.
 
-## Demo
+## Demo 👀
 
-- [Multiple randomised patterns](http://codepen.io/DevonChurch/full/LNYxya/)
-- [Randomised animated pattern](http://codepen.io/DevonChurch/full/QNWQeE/)
+### [Multiple randomised patterns](http://codepen.io/DevonChurch/full/LNYxya/)
+![ham-toasty](https://user-images.githubusercontent.com/15273233/51814369-192fcf00-2320-11e9-82a2-bd974b29f879.gif)
 
-## Installation
+### [Randomised animated pattern](http://codepen.io/DevonChurch/full/QNWQeE/)
+![spotify-style-pulse](https://user-images.githubusercontent.com/15273233/51814356-f7cee300-231f-11e9-94f3-a1404b65cf73.gif)
+
+## Installation 🤖
 
 - Clone this repository
     ```
@@ -24,7 +29,7 @@ An SVG geometric pattern generator
     npm start
     ```
 
-## Usage
+## Usage ⚙
 
 Below is the general process for injecting a pattern into the DOM. This process can be separated and run at applicable times e.g. you may want to generate the pattern parameters with node.js server side, generate the segment HTML on page load and render the pattern layout upon user interaction.
 
@@ -95,7 +100,7 @@ Below is the general process for injecting a pattern into the DOM. This process 
     $yLayouts: 8, 10;
     ```
 
-## Example
+## Example ✅
 
 Inject 10 randomised static patterns with an 8x8 segment layout into the DOM.
 
@@ -112,6 +117,6 @@ for (let i = 0; i < 10; i += 1) {
 }
 ```
 
-## License
+## License 📜
 
 MIT
